@@ -16,6 +16,17 @@
 		D6C62BE227BF314C0056092C /* AssignmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62BE127BF314C0056092C /* AssignmentTests.swift */; };
 		D6C62BEC27BF314C0056092C /* AssignmentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62BEB27BF314C0056092C /* AssignmentUITests.swift */; };
 		D6C62BEE27BF314C0056092C /* AssignmentUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62BED27BF314C0056092C /* AssignmentUITestsLaunchTests.swift */; };
+		D6C62C0627BF37E60056092C /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = D6C62C0527BF37E60056092C /* cities.json */; };
+		D6C62C0827BF38170056092C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62C0727BF38170056092C /* Helper.swift */; };
+		D6C62C0A27BF3B490056092C /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62C0927BF3B490056092C /* CityModel.swift */; };
+		D6C62C0D27BF3F9D0056092C /* CitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62C0B27BF3F9D0056092C /* CitiesViewController.swift */; };
+		D6C62C0E27BF3F9D0056092C /* CitiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6C62C0C27BF3F9D0056092C /* CitiesViewController.xib */; };
+		D6C62C1227BF3FED0056092C /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62C1027BF3FED0056092C /* CityTableViewCell.swift */; };
+		D6C62C1327BF3FED0056092C /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6C62C1127BF3FED0056092C /* CityTableViewCell.xib */; };
+		D6C62C1627BF4A8C0056092C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62C1427BF4A8C0056092C /* MapViewController.swift */; };
+		D6C62C1727BF4A8C0056092C /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6C62C1527BF4A8C0056092C /* MapViewController.xib */; };
+		D6C62C2027BF68C70056092C /* SearchCityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62C1F27BF68C70056092C /* SearchCityService.swift */; };
+		D6C690F127BFD67D0025B3F1 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C690F027BFD67D0025B3F1 /* String+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +60,17 @@
 		D6C62BE727BF314C0056092C /* AssignmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AssignmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6C62BEB27BF314C0056092C /* AssignmentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentUITests.swift; sourceTree = "<group>"; };
 		D6C62BED27BF314C0056092C /* AssignmentUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D6C62C0527BF37E60056092C /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
+		D6C62C0727BF38170056092C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		D6C62C0927BF3B490056092C /* CityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
+		D6C62C0B27BF3F9D0056092C /* CitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewController.swift; sourceTree = "<group>"; };
+		D6C62C0C27BF3F9D0056092C /* CitiesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CitiesViewController.xib; sourceTree = "<group>"; };
+		D6C62C1027BF3FED0056092C /* CityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		D6C62C1127BF3FED0056092C /* CityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
+		D6C62C1427BF4A8C0056092C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		D6C62C1527BF4A8C0056092C /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		D6C62C1F27BF68C70056092C /* SearchCityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCityService.swift; sourceTree = "<group>"; };
+		D6C690F027BFD67D0025B3F1 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +121,8 @@
 		D6C62BC927BF314A0056092C /* Assignment */ = {
 			isa = PBXGroup;
 			children = (
+				D6C62BFF27BF361A0056092C /* Core */,
+				D6C62BFA27BF35520056092C /* ViewControllers */,
 				D6C62BCA27BF314A0056092C /* AppDelegate.swift */,
 				D6C62BCC27BF314A0056092C /* SceneDelegate.swift */,
 				D6C62BCE27BF314A0056092C /* ViewController.swift */,
@@ -125,6 +149,95 @@
 				D6C62BED27BF314C0056092C /* AssignmentUITestsLaunchTests.swift */,
 			);
 			path = AssignmentUITests;
+			sourceTree = "<group>";
+		};
+		D6C62BFA27BF35520056092C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D6C62BFE27BF35870056092C /* MapViewContoller */,
+				D6C62BFD27BF35750056092C /* CitiesViewController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D6C62BFD27BF35750056092C /* CitiesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D6C62C0F27BF3FCD0056092C /* Cells */,
+				D6C62C0B27BF3F9D0056092C /* CitiesViewController.swift */,
+				D6C62C0C27BF3F9D0056092C /* CitiesViewController.xib */,
+			);
+			path = CitiesViewController;
+			sourceTree = "<group>";
+		};
+		D6C62BFE27BF35870056092C /* MapViewContoller */ = {
+			isa = PBXGroup;
+			children = (
+				D6C62C1427BF4A8C0056092C /* MapViewController.swift */,
+				D6C62C1527BF4A8C0056092C /* MapViewController.xib */,
+			);
+			path = MapViewContoller;
+			sourceTree = "<group>";
+		};
+		D6C62BFF27BF361A0056092C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D6C690EF27BFD66A0025B3F1 /* Extensions */,
+				D6C62C0427BF378E0056092C /* Services */,
+				D6C62C0127BF362D0056092C /* Model */,
+				D6C62C0027BF36280056092C /* LocalData */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		D6C62C0027BF36280056092C /* LocalData */ = {
+			isa = PBXGroup;
+			children = (
+				D6C62C0527BF37E60056092C /* cities.json */,
+			);
+			path = LocalData;
+			sourceTree = "<group>";
+		};
+		D6C62C0127BF362D0056092C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D6C62C0927BF3B490056092C /* CityModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D6C62C0427BF378E0056092C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D6C62C1E27BF68AC0056092C /* Search */,
+				D6C62C0727BF38170056092C /* Helper.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D6C62C0F27BF3FCD0056092C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D6C62C1027BF3FED0056092C /* CityTableViewCell.swift */,
+				D6C62C1127BF3FED0056092C /* CityTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D6C62C1E27BF68AC0056092C /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D6C62C1F27BF68C70056092C /* SearchCityService.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		D6C690EF27BFD66A0025B3F1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D6C690F027BFD67D0025B3F1 /* String+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,9 +344,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6C62C0627BF37E60056092C /* cities.json in Resources */,
 				D6C62BD727BF314B0056092C /* LaunchScreen.storyboard in Resources */,
 				D6C62BD427BF314B0056092C /* Assets.xcassets in Resources */,
 				D6C62BD227BF314A0056092C /* Main.storyboard in Resources */,
+				D6C62C1727BF4A8C0056092C /* MapViewController.xib in Resources */,
+				D6C62C1327BF3FED0056092C /* CityTableViewCell.xib in Resources */,
+				D6C62C0E27BF3F9D0056092C /* CitiesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +375,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6C62C0A27BF3B490056092C /* CityModel.swift in Sources */,
+				D6C62C2027BF68C70056092C /* SearchCityService.swift in Sources */,
+				D6C62C1227BF3FED0056092C /* CityTableViewCell.swift in Sources */,
 				D6C62BCF27BF314A0056092C /* ViewController.swift in Sources */,
 				D6C62BCB27BF314A0056092C /* AppDelegate.swift in Sources */,
+				D6C62C0D27BF3F9D0056092C /* CitiesViewController.swift in Sources */,
 				D6C62BCD27BF314A0056092C /* SceneDelegate.swift in Sources */,
+				D6C62C0827BF38170056092C /* Helper.swift in Sources */,
+				D6C690F127BFD67D0025B3F1 /* String+Ext.swift in Sources */,
+				D6C62C1627BF4A8C0056092C /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +491,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -422,7 +546,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -451,7 +575,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.toanht.assignment.Assignment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toanht.Assignment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -478,7 +602,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.toanht.assignment.Assignment;
+				PRODUCT_BUNDLE_IDENTIFIER = com.toanht.Assignment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
