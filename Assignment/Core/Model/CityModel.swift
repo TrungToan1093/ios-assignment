@@ -32,4 +32,8 @@ struct SearchCityModel: Codable {
     mutating func updateRelated(related: [String: SearchCityModel]) {
         self.related = related
     }
+    
+    mutating func updateValue(_ data: [CityModel]) {
+        self.value += data
+    }
 }

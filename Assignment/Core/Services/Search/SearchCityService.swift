@@ -44,12 +44,12 @@ class SearchService {
             self.handlerCitiesNameData(key: key, cities: value)
         }
         
-//        let groupCountry = Dictionary.init(grouping: cities) { (item) -> String in
-//            return String(item.country.lowercased().first!)
-//        }
-//        groupCountry.forEach { (key, value) in
-//            self.handlerCitiesNameData(key: key, cities: value)
-//        }
+        let groupCountry = Dictionary.init(grouping: cities) { (item) -> String in
+            return String(item.country.lowercased().first!)
+        }
+        groupCountry.forEach { (key, value) in
+            self.handlerCitiesCountryData(key: key, cities: value)
+        }
 
     }
     
@@ -64,9 +64,9 @@ class SearchService {
         }.filter {
             $0.key != ""
         }
-
+        
         guard group.count > 0 else { return }
-        self.updateRelatedCityData(key: key, value: cities, group: group, searchCityModel:  &self.searchCountryModel)
+        self.updateRelatedCityData(key: key, value: cities, group: group, searchCityModel:  &self.searchCityModel)
         group.forEach { (key, value) in
             if (value.count == 1 && key == value[0].country) || key.isEmpty {
                 return
@@ -108,6 +108,10 @@ class SearchService {
             data[k] =  searchModel
         }
         let model = SearchCityModel(key: key, value: value, related: data)
+        
+        if let _ = searchCityModel[key] {
+            searchCityModel[key]?.updateValue(value)
+        }
         searchCityModel[key] = model
     }
     
