@@ -15,6 +15,7 @@ class SearchService {
     let citiesJsonName: String = "cities"
     public private(set) var cities: [CityModel] = []
     public private(set) var searchCityModel: [String: SearchCityModel] = [:]
+    public private(set) var searchCountryModel: [String: SearchCityModel] = [:]
     
     func loadData(_ completion: (Bool) -> ()) {
         if let localData = Helper.readLocalFile(forName: citiesJsonName) {
@@ -43,12 +44,12 @@ class SearchService {
             self.handlerCitiesNameData(key: key, cities: value)
         }
         
-        let groupCountry = Dictionary.init(grouping: cities) { (item) -> String in
-            return String(item.country.lowercased().first!)
-        }
-        groupCountry.forEach { (key, value) in
-            self.handlerCitiesNameData(key: key, cities: value)
-        }
+//        let groupCountry = Dictionary.init(grouping: cities) { (item) -> String in
+//            return String(item.country.lowercased().first!)
+//        }
+//        groupCountry.forEach { (key, value) in
+//            self.handlerCitiesNameData(key: key, cities: value)
+//        }
 
     }
     
@@ -65,7 +66,7 @@ class SearchService {
         }
 
         guard group.count > 0 else { return }
-        self.updateRelatedCityData(key: key, value: cities, group: group, searchCityModel:  &self.searchCityModel)
+        self.updateRelatedCityData(key: key, value: cities, group: group, searchCityModel:  &self.searchCountryModel)
         group.forEach { (key, value) in
             if (value.count == 1 && key == value[0].country) || key.isEmpty {
                 return
@@ -109,36 +110,62 @@ class SearchService {
         let model = SearchCityModel(key: key, value: value, related: data)
         searchCityModel[key] = model
     }
+    
 }
 
 
 protocol SearchCityProtocol {
     var citisOriginal: [CityModel] { get }
-    func search(text: String, completion: (([CityModel]) -> Void))
+    func search(text: String, completion: @escaping (([CityModel]) -> Void))
 }
 
 class SearchDefaultImplement: SearchCityProtocol {
+    
     var citisOriginal: [CityModel]
-    var currentSearch: [String: SearchCityModel]
-    init(cities: [CityModel], currentSearch: [String: SearchCityModel]) {
+    var currentSearchCityModel: [String: SearchCityModel] = SearchService.shared.searchCityModel
+    var currentSearchCountryModel: [String: SearchCityModel] = SearchService.shared.searchCountryModel
+    init(cities: [CityModel]) {
         self.citisOriginal = cities
-        self.currentSearch = currentSearch
     }
     
-    func search(text: String, completion: (([CityModel]) -> Void)) {
+    func search(text: String, completion: @escaping (([CityModel]) -> Void)) {
         if text.isEmpty {
             completion(citisOriginal)
         } else {
-            let search = self.search(text: text)
-            completion(search)
+            let group: DispatchGroup = DispatchGroup()
+            group.enter()
+            var dataFromName: [CityModel] = []
+            self.searchFromName(text: text) { data in
+                dataFromName = data
+                group.leave()
+            }
+            
+            group.enter()
+            var dataFromCountry: [CityModel] = []
+            self.searchFromCountry(text: text) { data in
+                dataFromCountry = data
+                group.leave()
+            }
+            
+            group.notify(queue: .main) {
+                completion(dataFromName + dataFromCountry)
+            }
         }
     }
     
-    private func search(text: String) -> [CityModel] {
-        if  let data = self.currentSearch[text.lowercased()] {
-            return data.value
+    private func searchFromName(text: String, completion: (([CityModel]) -> Void)) {
+        if  let data = self.currentSearchCityModel[text.lowercased()] {
+            completion(data.value)
         } else {
-            return []
+            completion([])
+        }
+    }
+    
+    private func searchFromCountry(text: String, completion: (([CityModel]) -> Void)) {
+        if  let data = self.currentSearchCountryModel[text.lowercased()] {
+            completion(data.value)
+        } else {
+            completion([])
         }
     }
 }

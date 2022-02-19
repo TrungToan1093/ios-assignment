@@ -11,6 +11,7 @@ class CityTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var coorLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +26,7 @@ class CityTableViewCell: UITableViewCell {
     
     
     func configure(city: CityModel) {
-        self.nameLabel.text = "name: \(city.name), country:\(city.country)"
+        self.nameLabel.text = "\(city.name), \(city.country)"
+        self.coorLabel.text = "long: \(city.coord.lon), lat: \(city.coord.lat)"
     }
 }

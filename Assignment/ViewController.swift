@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func testButtonTapped() {
-        let searchService: SearchCityProtocol = SearchDefaultImplement(cities: SearchService.shared.cities, currentSearch: SearchService.shared.searchCityModel)
+        let searchService: SearchCityProtocol = SearchDefaultImplement(cities: SearchService.shared.cities)
         let vc = CitiesViewController(searchService: searchService)
         self.navigationController?.pushViewController(vc, animated: true)
     }
