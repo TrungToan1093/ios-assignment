@@ -9,24 +9,6 @@ import Foundation
 
 
 public struct Helper {
-    public static var kCacheAPI_MEProfile = "kCacheAPI_MEProfile"
-    
-    public static func loadCacheJsonAPI(){
-        guard let path = Bundle.main.path(forResource: "cities", ofType: "json") else { return }
-        do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-            let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-            print("ToanHT \(jsonResult)")
-            
-//            if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let person = jsonResult["person"] as? [Any] {
-//                // do stuff
-//            }
-        } catch {
-            print("ToanHT handle error")
-            // handle error
-        }
-    }
-    
     public static func readLocalFile(forName name: String) -> Data? {
         do {
             if let bundlePath = Bundle.main.path(forResource: name,
@@ -72,12 +54,10 @@ public struct Helper {
                 if let error = error {
                     completion(.failure(error))
                 }
-                
                 if let data = data {
                     completion(.success(data))
                 }
             }
-            
             urlSession.resume()
         }
     }
