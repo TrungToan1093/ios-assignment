@@ -3,4 +3,22 @@
    uuid = "245B0AEB-912F-404F-A179-C5350E3E9259"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B430A876-965A-4A9B-A70A-54C34449A135"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Assignment/ViewControllers/MapViewContoller/MapViewController.swift"
+            startingColumnNumber = "33"
+            endingColumnNumber = "42"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "mapView"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

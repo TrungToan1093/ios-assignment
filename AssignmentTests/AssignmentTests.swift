@@ -32,5 +32,17 @@ class AssignmentTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testSearch() {
+        SearchService.shared.loadData { status in
+            print(status)
+            let citis: [CityModel] = SearchService.shared.cities
+            let seachSeviec: SearchCityProtocol = SearchDefaultImplement(cities: citis)
+            seachSeviec.search(text: "AU") { cities in
+                XCTAssert(cities.count > 0, "")
+            }
+        }
+        
+    }
 
 }
