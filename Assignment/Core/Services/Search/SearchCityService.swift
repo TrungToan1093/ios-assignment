@@ -36,16 +36,47 @@ class SearchService {
     }
     
     private func prepareData() {
-        let group = Dictionary.init(grouping: cities) { (item) -> String in
+        let groupName = Dictionary.init(grouping: cities) { (item) -> String in
             return String(item.name.lowercased().first!)
         }
+        groupName.forEach { (key, value) in
+            self.handlerCitiesNameData(key: key, cities: value)
+        }
+        
+        let groupCountry = Dictionary.init(grouping: cities) { (item) -> String in
+            return String(item.country.lowercased().first!)
+        }
+        groupCountry.forEach { (key, value) in
+            self.handlerCitiesNameData(key: key, cities: value)
+        }
+
+    }
+    
+    private func handlerCitiesCountryData(key: String, cities: [CityModel]) {
+        let group = Dictionary.init(grouping: cities) { (item) -> String in
+            if key.count < item.country.count {
+                let string = (key + item.country[key.count]).lowercased()
+                return string
+            } else {
+                return ""
+            }
+        }.filter {
+            $0.key != ""
+        }
+
+        guard group.count > 0 else { return }
+        self.updateRelatedCityData(key: key, value: cities, group: group, searchCityModel:  &self.searchCityModel)
         group.forEach { (key, value) in
-            self.handlerCitiesData(key: key, cities: value)
+            if (value.count == 1 && key == value[0].country) || key.isEmpty {
+                return
+            } else {
+                self.handlerCitiesCountryData(key: key, cities: value)
+            }
         }
     }
     
     
-    private func handlerCitiesData(key: String, cities: [CityModel]) {
+    private func handlerCitiesNameData(key: String, cities: [CityModel]) {
         let group = Dictionary.init(grouping: cities) { (item) -> String in
             if key.count < item.name.count {
                 let string = (key + item.name[key.count]).lowercased()
@@ -63,7 +94,7 @@ class SearchService {
             if (value.count == 1 && key == value[0].name) || key.isEmpty {
                 return
             } else {
-                self.handlerCitiesData(key: key, cities: value)
+                self.handlerCitiesNameData(key: key, cities: value)
             }
         }
     }
