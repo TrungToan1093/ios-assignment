@@ -15,7 +15,6 @@ class SearchService {
     let citiesJsonName: String = "cities"
     public private(set) var cities: [CityModel] = []
     public private(set) var searchCityModel: [String: SearchCityModel] = [:]
-    public private(set) var searchCountryModel: [String: SearchCityModel] = [:]
     
     func loadData(_ completion: (Bool) -> ()) {
         self.setupData()
@@ -173,7 +172,6 @@ class SearchDefaultImplement: SearchCityProtocol {
     
     var citisOriginal: [CityModel]
     var currentSearchCityModel: [String: SearchCityModel] = SearchService.shared.searchCityModel
-    var currentSearchCountryModel: [String: SearchCityModel] = SearchService.shared.searchCountryModel
     init(cities: [CityModel]) {
         self.citisOriginal = cities
     }
@@ -182,37 +180,14 @@ class SearchDefaultImplement: SearchCityProtocol {
         if text.isEmpty {
             completion(citisOriginal)
         } else {
-            let group: DispatchGroup = DispatchGroup()
-            group.enter()
-            var dataFromName: [CityModel] = []
             self.searchFromName(text: text) { data in
-                dataFromName = data
-                group.leave()
-            }
-            
-            group.enter()
-            var dataFromCountry: [CityModel] = []
-            self.searchFromCountry(text: text) { data in
-                dataFromCountry = data
-                group.leave()
-            }
-            
-            group.notify(queue: .main) {
-                completion(dataFromName + dataFromCountry)
+                completion(data)
             }
         }
     }
     
     private func searchFromName(text: String, completion: (([CityModel]) -> Void)) {
         if  let data = self.currentSearchCityModel[text.lowercased()] {
-            completion(data.value)
-        } else {
-            completion([])
-        }
-    }
-    
-    private func searchFromCountry(text: String, completion: (([CityModel]) -> Void)) {
-        if  let data = self.currentSearchCountryModel[text.lowercased()] {
             completion(data.value)
         } else {
             completion([])
