@@ -19,9 +19,27 @@ struct CityModel: Codable {
     var coord: CoordinateModel
 }
 
+extension CityModel: Hashable {
+    static func ==(lhs: CityModel, rhs: CityModel) -> Bool {
+        return lhs._id == rhs._id && lhs.name == rhs.name && lhs.country == rhs.country && lhs.coord == rhs.coord
+    }
+}
+
+//extension CityModel: Hashable {
+//    static func == (lhs: CityModel, rhs: CityModel) -> Bool {
+//        return lhs._id == rhs._id
+//    }
+//}
+
 struct CoordinateModel: Codable {
     var lon: Double
     var lat: Double
+}
+
+extension CoordinateModel: Hashable {
+    static func ==(lhs: CoordinateModel, rhs: CoordinateModel) -> Bool {
+        return lhs.lon == rhs.lon && lhs.lat == rhs.lat
+    }
 }
 
 struct SearchCityModel: Codable {
@@ -34,6 +52,6 @@ struct SearchCityModel: Codable {
     }
     
     mutating func updateValue(_ data: [CityModel]) {
-        self.value += data
+        self.value = data
     }
 }

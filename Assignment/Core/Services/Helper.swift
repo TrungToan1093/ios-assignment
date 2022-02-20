@@ -47,6 +47,18 @@ public struct Helper {
         }
     }
     
+    static func parseDict<T:Codable>(jsonData: Data) -> [String:T]? {
+        do {
+            let decodedData = try JSONDecoder().decode([String: T].self,
+                                                       from: jsonData)
+            return decodedData
+        } catch {
+            print("decode error")
+            return nil
+            
+        }
+    }
+    
     public static func loadJson(fromURLString urlString: String,
                           completion: @escaping (Result<Data, Error>) -> Void) {
         if let url = URL(string: urlString) {
@@ -60,6 +72,55 @@ public struct Helper {
             }
             urlSession.resume()
         }
+    }
+    
+    static func encodeData<T: Codable>(withDict dict: [String:T]) -> String? {
+        let encoder = JSONEncoder()
+        if let jsonData = try? encoder.encode(dict) {
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                return jsonString
+
+            }
+        }
+        return nil
+    }
+    
+    /**
+     self.saveJsonToFile(withFilename: "myJsonData", jsonString: jsonString)
+     if let data = self.loadJSON(withFilename: "myJsonData") {
+         let json : [String: T]? = self.parseDict(jsonData: data)
+         if let json = json {
+             print("ToanHT json ne \(json)")
+         }
+     }
+     */
+    
+    
+    static func saveJsonToFile(withFilename filename: String, jsonString: String) {
+        if let jsonData = jsonString.data(using: .utf8),
+            let documentDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                             in: .userDomainMask).first {
+            let pathWithFileName = documentDirectory.appendingPathComponent(filename)
+            do {
+                try jsonData.write(to: pathWithFileName)
+            } catch {
+                // handle error
+            }
+        }
+    }
+    
+    static func loadJSON(withFilename filename: String) -> Data? {
+        do {
+        if let documentDirectory = FileManager.default.urls(for: .documentDirectory,
+                                                               in: .userDomainMask).first {
+            let pathWithFileName = documentDirectory.appendingPathComponent(filename)
+            let data = try Data(contentsOf: pathWithFileName)
+            return data
+        }
+        } catch {
+            print(error)
+        }
+        return nil
     }
 }
 

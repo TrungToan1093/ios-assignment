@@ -18,22 +18,28 @@ class SearchService {
     public private(set) var searchCountryModel: [String: SearchCityModel] = [:]
     
     func loadData(_ completion: (Bool) -> ()) {
-        if let localData = Helper.readLocalFile(forName: citiesJsonName) {
-            if let model: [CityModel] = Helper.parseArray(jsonData: localData) {
-                self.sortData(cities: model)
-                self.prepareData()
-                completion(true)
-            } else {
-                completion(false)
-                print("fail =======")
-            }
-        }
+        self.setupData()
+        completion(true)
     }
     
-    private func sortData(cities: [CityModel]) {
+    private func setupData() {
+        let initModel = self.fetchInitData()
+        self.cities = self.sortData(cities: initModel)
+        self.prepareData()
+//        self.prepareGroupData()
+    }
+    
+    private func fetchInitData() -> [CityModel] {
+        if let localData = Helper.readLocalFile(forName: citiesJsonName),
+           let model: [CityModel] = Helper.parseArray(jsonData: localData) {
+            return model
+        }
+        return []
+    }
+    
+    private func sortData(cities: [CityModel]) -> [CityModel] {
         let citiesSort = cities.sorted { $0.name.lowercased() < $1.name.lowercased() }
-        self.cities = citiesSort
-
+        return citiesSort
     }
     
     private func prepareData() {
@@ -64,9 +70,8 @@ class SearchService {
         }.filter {
             $0.key != ""
         }
-        
-        guard group.count > 0 else { return }
         self.updateRelatedCityData(key: key, value: cities, group: group, searchCityModel:  &self.searchCityModel)
+        guard group.count > 0 else { return }
         group.forEach { (key, value) in
             if (value.count == 1 && key == value[0].country) || key.isEmpty {
                 return
@@ -88,9 +93,8 @@ class SearchService {
         }.filter {
             $0.key != ""
         }
-
-        guard group.count > 0 else { return }
         self.updateRelatedCityData(key: key, value: cities, group: group, searchCityModel:  &self.searchCityModel)
+        guard group.count > 0 else { return }
         group.forEach { (key, value) in
             if (value.count == 1 && key == value[0].name) || key.isEmpty {
                 return
@@ -100,17 +104,59 @@ class SearchService {
         }
     }
     
+    func prepareGroupData() {
+        let groupName = Dictionary.init(grouping: self.searchCityModel) { (item) -> String in
+            return item.key[0]
+        }
+        groupName.forEach { (key, value) in
+            var relatedData: [String: SearchCityModel] = [:]
+            value.forEach { (key: String, value: SearchCityModel) in
+                relatedData[key] = value
+            }
+            self.groupDict(key: key, data: relatedData, dataUpdateNeed: &self.searchCityModel)
+        }
+    }
+    
+    
+    private func groupDict(key: String, data: [String: SearchCityModel], dataUpdateNeed: inout [String: SearchCityModel]) {
+        guard var releatedUpdateNeed = dataUpdateNeed[key]?.related else { return }
+        var dataUpdateNeed: [String: SearchCityModel] = [:]
+        let group = Dictionary.init(grouping: data) { (item) -> String in
+            if key.count < item.key.count {
+                let string = (key + item.key[key.count]).lowercased()
+                return string
+            } else {
+                return ""
+            }
+        }.filter {
+            $0.key != ""
+        }
+        guard group.count > 0 else { return }
+        group.forEach { (key, value) in
+            var relatedData: [String: SearchCityModel] = [:]
+            value.forEach { (key: String, value: SearchCityModel) in
+                relatedData[key] = value
+            }
+            dataUpdateNeed[key]?.updateRelated(related: relatedData)
+            if relatedData.count == 1 && key == relatedData[key]?.key || key.isEmpty {
+                return
+            } else {
+                self.groupDict(key: key, data: relatedData, dataUpdateNeed: &releatedUpdateNeed)
+            }
+        }
+    }
     
     private func updateRelatedCityData(key: String, value: [CityModel], group: [String : [CityModel]], searchCityModel: inout [String: SearchCityModel]) {
-        var data: [String: SearchCityModel] = [:]
-        group.forEach { (k, v) in
-            let searchModel: SearchCityModel = SearchCityModel(key: k, value: v, related: [:])
-            data[k] =  searchModel
-        }
-        let model = SearchCityModel(key: key, value: value, related: data)
+//        var data: [String: SearchCityModel] = [:]
+//        group.forEach { (k, v) in
+//            let searchModel: SearchCityModel = SearchCityModel(key: k, value: v, related: [:])
+//            data[k] =  searchModel
+//        }
+        let model = SearchCityModel(key: key, value: value, related: [:])
         
-        if let _ = searchCityModel[key] {
-            searchCityModel[key]?.updateValue(value)
+        if let oldData = searchCityModel[key] {
+            let newData = (oldData.value + value).removingDuplicates()
+            searchCityModel[key]?.updateValue(newData)
         }
         searchCityModel[key] = model
     }
