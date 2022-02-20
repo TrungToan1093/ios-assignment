@@ -17,9 +17,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.setupView(isReady: false)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.loadInitData()
-        }
+        self.loadInitData()
+
     }
     
     
@@ -31,10 +30,12 @@ class ViewController: UIViewController {
     }
     
     private func loadInitData() {
-        SearchService.shared.loadData() { [weak self] status in
-            print("loadData \(status)")
-            guard let self = self else { return }
-            self.setupView(isReady: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            SearchService.shared.loadData() { [weak self] status in
+                print("loadData \(status)")
+                guard let self = self else { return }
+                self.setupView(isReady: true)
+            }
         }
     }
     
