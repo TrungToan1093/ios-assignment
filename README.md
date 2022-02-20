@@ -1,7 +1,11 @@
 # ios-assignment
 Referernce https://www.geeksforgeeks.org/pattern-searching-using-suffix-tree/
-Idea to prepare data
+** SearchDefaultImplement
+Is preprare data with dictionay
+=> seach with key value.
 
+======
+Another Idea to prepare data
 [ABC, ABCD, ACD, BCD, BDE]
 
 => "A": [ABC, ABCD, ACD]
