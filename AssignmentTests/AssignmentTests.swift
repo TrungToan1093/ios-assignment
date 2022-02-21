@@ -26,9 +26,9 @@ class AssignmentTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
         
-        SearchService.shared.loadData { status in
+        SuffixReferenceService.shared.loadData { status in
 //            let searchService: SearchCityProtocol = SearchDefaultImplement(cities: SearchService.shared.cities)
-            let searchService: SearchCityProtocol = SearchSufixImplement(cities: SearchService.shared.cities)
+            let searchService: SearchCityProtocol = SearchSufixImplement(cities: SuffixReferenceService.shared.cities)
             self.testCityName(searchText: "Ala", searchService: searchService)
             self.testCityNameParticular(searchText: "Alabama", searchService: searchService)
             self.testNameCityFail(searchText: "Alabamaaaa", searchService: searchService)
