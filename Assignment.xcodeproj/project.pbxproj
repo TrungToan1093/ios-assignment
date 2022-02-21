@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D614D4D127C37F9200CC4BCE /* SuffixReferencePrepareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614D4D027C37F9200CC4BCE /* SuffixReferencePrepareData.swift */; };
-		D614D4D327C37FBB00CC4BCE /* DictionaryPrepareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614D4D227C37FBB00CC4BCE /* DictionaryPrepareData.swift */; };
+		D614D4DE27C3959500CC4BCE /* SuffixReferenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614D4DD27C3959500CC4BCE /* SuffixReferenceService.swift */; };
+		D614D4E027C395B800CC4BCE /* DictionaryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614D4DF27C395B800CC4BCE /* DictionaryService.swift */; };
+		D614D4E327C3974400CC4BCE /* FetchDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614D4E227C3974400CC4BCE /* FetchDataService.swift */; };
 		D6C33FBB27C243B0003C268F /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C33FBA27C243B0003C268F /* Array+Ext.swift */; };
 		D6C62BCB27BF314A0056092C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62BCA27BF314A0056092C /* AppDelegate.swift */; };
 		D6C62BCD27BF314A0056092C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62BCC27BF314A0056092C /* SceneDelegate.swift */; };
@@ -50,8 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D614D4D027C37F9200CC4BCE /* SuffixReferencePrepareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixReferencePrepareData.swift; sourceTree = "<group>"; };
-		D614D4D227C37FBB00CC4BCE /* DictionaryPrepareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryPrepareData.swift; sourceTree = "<group>"; };
+		D614D4DD27C3959500CC4BCE /* SuffixReferenceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuffixReferenceService.swift; sourceTree = "<group>"; };
+		D614D4DF27C395B800CC4BCE /* DictionaryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryService.swift; sourceTree = "<group>"; };
+		D614D4E227C3974400CC4BCE /* FetchDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchDataService.swift; sourceTree = "<group>"; };
 		D6C33FBA27C243B0003C268F /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		D6C62BC727BF314A0056092C /* Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6C62BCA27BF314A0056092C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,13 +106,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D614D4CF27C37F6800CC4BCE /* PrepareData */ = {
+		D614D4D727C38FE900CC4BCE /* App */ = {
 			isa = PBXGroup;
 			children = (
-				D614D4D027C37F9200CC4BCE /* SuffixReferencePrepareData.swift */,
-				D614D4D227C37FBB00CC4BCE /* DictionaryPrepareData.swift */,
+				D6C62BCC27BF314A0056092C /* SceneDelegate.swift */,
+				D6C62BCA27BF314A0056092C /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D614D4DC27C3959500CC4BCE /* PrepareData */ = {
+			isa = PBXGroup;
+			children = (
+				D614D4DF27C395B800CC4BCE /* DictionaryService.swift */,
+				D614D4DD27C3959500CC4BCE /* SuffixReferenceService.swift */,
 			);
 			path = PrepareData;
+			sourceTree = "<group>";
+		};
+		D614D4E127C3972F00CC4BCE /* FetchData */ = {
+			isa = PBXGroup;
+			children = (
+				D614D4E227C3974400CC4BCE /* FetchDataService.swift */,
+			);
+			path = FetchData;
 			sourceTree = "<group>";
 		};
 		D6C62BBE27BF314A0056092C = {
@@ -136,11 +155,9 @@
 		D6C62BC927BF314A0056092C /* Assignment */ = {
 			isa = PBXGroup;
 			children = (
+				D614D4D727C38FE900CC4BCE /* App */,
 				D6C62BFF27BF361A0056092C /* Core */,
 				D6C62BFA27BF35520056092C /* ViewControllers */,
-				D6C62BCA27BF314A0056092C /* AppDelegate.swift */,
-				D6C62BCC27BF314A0056092C /* SceneDelegate.swift */,
-				D6C62BCE27BF314A0056092C /* ViewController.swift */,
 				D6C62BD027BF314A0056092C /* Main.storyboard */,
 				D6C62BD327BF314B0056092C /* Assets.xcassets */,
 				D6C62BD527BF314B0056092C /* LaunchScreen.storyboard */,
@@ -169,6 +186,7 @@
 		D6C62BFA27BF35520056092C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D6C62BCE27BF314A0056092C /* ViewController.swift */,
 				D6C62BFE27BF35870056092C /* MapViewContoller */,
 				D6C62BFD27BF35750056092C /* CitiesViewController */,
 			);
@@ -224,7 +242,8 @@
 		D6C62C0427BF378E0056092C /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D614D4CF27C37F6800CC4BCE /* PrepareData */,
+				D614D4E127C3972F00CC4BCE /* FetchData */,
+				D614D4DC27C3959500CC4BCE /* PrepareData */,
 				D6C62C1E27BF68AC0056092C /* Search */,
 				D6C62C0727BF38170056092C /* Helper.swift */,
 			);
@@ -393,18 +412,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6C62C0A27BF3B490056092C /* CityModel.swift in Sources */,
+				D614D4E327C3974400CC4BCE /* FetchDataService.swift in Sources */,
 				D6C62C2027BF68C70056092C /* SearchCityService.swift in Sources */,
 				D6C62C1227BF3FED0056092C /* CityTableViewCell.swift in Sources */,
 				D6C62BCF27BF314A0056092C /* ViewController.swift in Sources */,
-				D614D4D127C37F9200CC4BCE /* SuffixReferencePrepareData.swift in Sources */,
 				D6C62BCB27BF314A0056092C /* AppDelegate.swift in Sources */,
-				D614D4D327C37FBB00CC4BCE /* DictionaryPrepareData.swift in Sources */,
 				D6C62C0D27BF3F9D0056092C /* CitiesViewController.swift in Sources */,
+				D614D4DE27C3959500CC4BCE /* SuffixReferenceService.swift in Sources */,
 				D6C33FBB27C243B0003C268F /* Array+Ext.swift in Sources */,
 				D6C62BCD27BF314A0056092C /* SceneDelegate.swift in Sources */,
 				D6C62C0827BF38170056092C /* Helper.swift in Sources */,
 				D6C690F127BFD67D0025B3F1 /* String+Ext.swift in Sources */,
 				D6C62C1627BF4A8C0056092C /* MapViewController.swift in Sources */,
+				D614D4E027C395B800CC4BCE /* DictionaryService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

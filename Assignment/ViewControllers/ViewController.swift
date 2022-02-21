@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     
     private func loadInitData() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            SearchService.shared.loadData() { [weak self] status in
+            SuffixReferenceService.shared.loadData() { [weak self] status in
                 print("loadData \(status)")
                 guard let self = self else { return }
                 self.setupView(isReady: true)
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
     
     @IBAction func testButtonTapped() {
 //        let searchService: SearchCityProtocol = SearchDefaultImplement(cities: SearchService.shared.cities)
-        let searchService: SearchCityProtocol = SearchSufixImplement(cities: SearchService.shared.cities)
+        let searchService: SearchCityProtocol = SearchSufixImplement(cities: SuffixReferenceService.shared.cities)
         let vc = CitiesViewController(searchService: searchService)
         self.navigationController?.pushViewController(vc, animated: true)
     }
