@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D614D4D127C37F9200CC4BCE /* SuffixReferencePrepareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614D4D027C37F9200CC4BCE /* SuffixReferencePrepareData.swift */; };
+		D614D4D327C37FBB00CC4BCE /* DictionaryPrepareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D614D4D227C37FBB00CC4BCE /* DictionaryPrepareData.swift */; };
 		D6C33FBB27C243B0003C268F /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C33FBA27C243B0003C268F /* Array+Ext.swift */; };
 		D6C62BCB27BF314A0056092C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62BCA27BF314A0056092C /* AppDelegate.swift */; };
 		D6C62BCD27BF314A0056092C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C62BCC27BF314A0056092C /* SceneDelegate.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D614D4D027C37F9200CC4BCE /* SuffixReferencePrepareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuffixReferencePrepareData.swift; sourceTree = "<group>"; };
+		D614D4D227C37FBB00CC4BCE /* DictionaryPrepareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryPrepareData.swift; sourceTree = "<group>"; };
 		D6C33FBA27C243B0003C268F /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		D6C62BC727BF314A0056092C /* Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6C62BCA27BF314A0056092C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +104,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D614D4CF27C37F6800CC4BCE /* PrepareData */ = {
+			isa = PBXGroup;
+			children = (
+				D614D4D027C37F9200CC4BCE /* SuffixReferencePrepareData.swift */,
+				D614D4D227C37FBB00CC4BCE /* DictionaryPrepareData.swift */,
+			);
+			path = PrepareData;
+			sourceTree = "<group>";
+		};
 		D6C62BBE27BF314A0056092C = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +224,7 @@
 		D6C62C0427BF378E0056092C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D614D4CF27C37F6800CC4BCE /* PrepareData */,
 				D6C62C1E27BF68AC0056092C /* Search */,
 				D6C62C0727BF38170056092C /* Helper.swift */,
 			);
@@ -382,7 +396,9 @@
 				D6C62C2027BF68C70056092C /* SearchCityService.swift in Sources */,
 				D6C62C1227BF3FED0056092C /* CityTableViewCell.swift in Sources */,
 				D6C62BCF27BF314A0056092C /* ViewController.swift in Sources */,
+				D614D4D127C37F9200CC4BCE /* SuffixReferencePrepareData.swift in Sources */,
 				D6C62BCB27BF314A0056092C /* AppDelegate.swift in Sources */,
+				D614D4D327C37FBB00CC4BCE /* DictionaryPrepareData.swift in Sources */,
 				D6C62C0D27BF3F9D0056092C /* CitiesViewController.swift in Sources */,
 				D6C33FBB27C243B0003C268F /* Array+Ext.swift in Sources */,
 				D6C62BCD27BF314A0056092C /* SceneDelegate.swift in Sources */,
