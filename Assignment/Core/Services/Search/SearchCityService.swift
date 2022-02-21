@@ -27,9 +27,9 @@ class SearchService {
     private func setupData() {
         let initModel = self.fetchInitData()
         self.cities = self.sortData(cities: initModel)
-        self.prepareData()
+//        self.prepareData()
 //        self.prepareGroupData()
-//        self.prepareRelatedData()
+        self.prepareRelatedData()
 //        print("nameCount:\(self.relaredModel.count), countrycount:\(self.relaredModel.count)")
         
         
@@ -284,5 +284,86 @@ class SearchDefaultImplement: SearchCityProtocol {
         } else {
             completion([])
         }
+    }
+}
+
+
+class SearchSufixImplement: SearchCityProtocol {
+    
+    var citisOriginal: [CityModel]
+    var currentSearchCityModel: [String: SearchCityModel] = SearchService.shared.relaredModel
+    var currentSearchCountryModel: [String: SearchCityModel] = SearchService.shared.relaredCountryModel
+    
+    init(cities: [CityModel]) {
+        self.citisOriginal = cities
+    }
+    
+    func search(text: String, completion: @escaping (([CityModel]) -> Void)) {
+        if text.isEmpty {
+            completion(self.citisOriginal)
+        } else {
+            self.searchFromName(text: text) { data in
+                completion(data)
+            }
+        }
+    }
+    
+    private func searchFromName(text: String, completion: @escaping (([CityModel]) -> Void)) {
+        let textLowercased = text.lowercased()
+        let group = DispatchGroup()
+        var citiesWithName: [CityModel] = []
+        group.enter()
+        self.searchFromCity(text: textLowercased) { cities in
+            citiesWithName = cities
+            group.leave()
+        }
+        
+        group.enter()
+        var citiesWithCountry: [CityModel] = []
+        self.searchFromCountry(text: textLowercased) { cities in
+            citiesWithCountry = cities
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            let data: [CityModel] = (citiesWithName + citiesWithCountry).removingDuplicates()
+            completion(data)
+        }
+    }
+    
+    
+    
+    func searchFromCity(text: String, completion: (([CityModel]) -> Void)) {
+        var resultSearch: SearchCityModel?
+        for index in 1...text.count {
+            let query = text[0..<index]
+            resultSearch = self.handlerSearchWithName(key: query, dataForSearch: resultSearch?.related ?? currentSearchCityModel)
+        }
+        
+        if let data = resultSearch?.value {
+            completion(data)
+        } else {
+            completion([])
+        }
+        
+    }
+    
+    func searchFromCountry(text: String, completion: (([CityModel]) -> Void)) {
+        var resultSearch: SearchCityModel?
+        for index in 1...text.count {
+            let query = text[0..<index]
+            resultSearch = self.handlerSearchWithName(key: query, dataForSearch: resultSearch?.related ?? currentSearchCountryModel)
+        }
+        
+        if let data = resultSearch?.value {
+            completion(data)
+        } else {
+            completion([])
+        }
+    }
+    
+    
+    func handlerSearchWithName(key: String, dataForSearch: [String: SearchCityModel]) -> SearchCityModel? {
+        return dataForSearch[key]
     }
 }
